@@ -1,0 +1,106 @@
+import java.util.Scanner;
+public class ShreyaA_CHMOD_20152016C1 {
+    public static void main(String[]args){
+        String[] binary1 = {"0","001","010","011","100","101","110","111"};
+        String[] octal1 = {"0","1","2","3","4","5","6","7"};
+        String[] chmod = {"---","--x","-w-", "-wx", "r--", "r-x", "rw-", "rwx"};
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter first line");
+        String line = s.nextLine();
+        System.out.println("Enter second line");
+        String line2 = s.nextLine();
+        System.out.println("Enter third line");
+        String line3 = s.nextLine();
+        System.out.println("Enter fourth line");
+        String line4 = s.nextLine();
+        System.out.println("Enter fifth line");
+        String line5 = s.nextLine();
+        String newline = line.replace(",", "");
+        String newline2 = line2.replace(",", "");
+        String newline3 = line3.replace(",", "");
+        String newline4 = line4.replace(",", "");
+        String newline5 = line5.replace(",", "");
+        for(int i = 0; i< newline.length(); i++) {
+            String sub = newline.substring(i,i+1);
+            int num = Integer.parseInt(sub);
+            System.out.println( binary1[num] +" and " + chmod[num]);
+        }
+        for(int i = 0; i< newline2.length(); i++) {
+            String sub2 = newline2.substring(i,i+1);
+            int num2 = Integer.parseInt(sub2);
+            System.out.println(binary1[num2] +" and " + chmod[num2]);
+        }
+
+        String sub = newline3.substring(0,3);
+        String sub2 = newline3.substring(3,6);
+        String sub3 = newline3.substring(6);
+        int bnum = Integer.parseInt(sub, 2);
+        String ostr = Integer.toOctalString(bnum);
+        int bnum2 = Integer.parseInt(sub2, 2);
+        String ostr2 = Integer.toOctalString(bnum2);
+        int bnum3 = Integer.parseInt(sub3, 2);
+        String ostr3 = Integer.toOctalString(bnum3);
+        int num = Integer.parseInt(ostr);
+        int num2 = Integer.parseInt(ostr2);
+        int num3 = Integer.parseInt(ostr3);
+        System.out.println("3. " + ostr+ostr2+ostr3 + " and " + chmod[num] + " "+ " " + chmod[num2]+" " + " " +chmod[num3]);
+
+
+        String sub1 = newline4.substring(0,3);
+        String sub21 = newline4.substring(3,6);
+        String sub31 = newline4.substring(6);
+        int bnum1 = Integer.parseInt(sub1, 2);
+        String ostr1 = Integer.toOctalString(bnum1);
+        int bnum21 = Integer.parseInt(sub21, 2);
+        String ostr21 = Integer.toOctalString(bnum21);
+        int bnum31 = Integer.parseInt(sub31, 2);
+        String ostr31 = Integer.toOctalString(bnum31);
+        int num1 = Integer.parseInt(ostr1);
+        int num21 = Integer.parseInt(ostr21);
+        int num31 = Integer.parseInt(ostr31);
+        System.out.println("4. " + ostr1+ostr21+ostr31 + " and " + chmod[num1] + " "+ " " + chmod[num21]+" " + " " +chmod[num31]);
+
+
+
+        String sub11 = newline5.substring(0,3);
+        String sub211 = newline5.substring(3,6);
+        String sub311 = newline5.substring(6);
+        int c = 0;
+        String e = "",f = "",g = "";
+        for (int index = 0; index<chmod.length; index++) {
+
+            if (chmod[index].equals(sub11))
+                e = octal1[index];
+
+            if (chmod[index].equals(sub211))
+                f = octal1[index];
+
+            if (chmod[index].equals(sub311))
+                g = octal1[index];
+
+
+
+        }
+
+        int n  = Integer.parseInt(e);
+        int n1 = Integer.parseInt(f);
+        int n2 = Integer.parseInt(g);
+
+
+
+
+
+        System.out.println("5. " + e+f+g +" and " + binary1[n]+ " " + binary1[n1]+ " " + binary1[n2]);
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
