@@ -1,0 +1,28 @@
+public class arrayLeft
+{
+    public static void main(String[] args)
+    {
+        int n = 1;
+        int [] Array1 = {1,2,3};
+        rotateLeft(Array1, n);
+        for (int i = 0; i<Array1.length; i++) {
+            System.out.print(Array1[i]);
+        }
+    }
+    public static int[] rotateLeft(int[] Array1, int n)
+    {
+        int initialPosition;
+        for (int i = 0; i < n; i++)
+        {
+            initialPosition = Array1[0];
+            for (int x = 0; x < Array1.length-1; x++)
+            {
+                Array1[x] = Array1[x+1];
+            }
+            Array1[Array1.length - 1] = initialPosition;
+        }
+        return Array1;
+    }
+
+
+}
