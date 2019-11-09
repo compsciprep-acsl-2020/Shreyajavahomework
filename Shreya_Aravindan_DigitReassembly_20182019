@@ -1,0 +1,36 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class Shreya_Aravindan_DigitReassembly_20182019 {
+
+    public static void main(String args[])
+    {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter line");
+
+        String line = s.nextLine();
+        int space = line.indexOf(" ");
+        String digit = line.substring(0,space);
+        int place = Integer.parseInt(line.substring(space+1));
+        String[] newArray = new String [place-1];
+        int count = 0;
+        for(int i = 0; i<line.length();i++) {
+            newArray[i-1] = (digit.substring(count, count+place));
+            count = count +1;
+        }
+        count = count +1;
+        int size = newArray.length;
+        int [] arr = new int [size];
+        for(int i=0; i<size; i++) {
+            arr[i] = Integer.parseInt(newArray[i]);
+        }
+        System.out.println(Arrays.toString(arr));
+        int sum = 0;
+        for (int x = 0; x < newArray.length; x++) {
+            sum +=  arr[x];
+        }
+        System.out.println(sum);
+
+    }
+}
+
+
