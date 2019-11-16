@@ -1,0 +1,153 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Arrays;
+import java.util.Scanner;
+public class Shreya_Aravindan_NinetyNine_2017_2018 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(new FileReader("file.txt"));
+        int winner;
+
+        String[] person1 = new String[5];
+        String[] person2 = new String[5];
+        String first = in.nextLine();
+        first = first.replaceAll(",","");
+        first = first.replaceAll(" ", "");
+
+        for (int i = 0; i < 5; i++) {
+            person1[i] = first.substring(i, i+1);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            person2[i] = first.substring(i+5, i+6);
+        }
+
+        Player player1 = new Player(person1);
+        Player player2 = new Player(person2);
+
+
+
+        while (in.hasNextLine()) {
+            String turn = in.nextLine();
+            winner = 0;
+            player1.setCard(person1);
+            player2.setCard(person2);
+            int scoreStart = Integer.parseInt(turn.substring(0, turn.indexOf(",")));
+            turn = turn.substring(turn.indexOf(",") + 1);
+            turn = turn.replaceAll(",", "");
+            turn = turn.replaceAll(" ", "");
+            Player.setScore(scoreStart);
+
+
+            while (Player.getScore() < 100)
+            {
+
+                player1.playGame();
+                if (Player.getScore() >= 100) {
+                    winner = 2;
+                    break;
+                }
+
+
+
+                player2.playGame();
+                if (Player.getScore() >= 100) {
+                    winner = 1;
+                    break;
+                }
+
+            }
+
+            if (winner == 1) {
+                System.out.println(Player.getScore() + ", Player #1");
+            }
+            else {
+                System.out.println(Player.getScore() + ", Player #2");
+            }
+        }
+    }
+}
+
+class Player{
+    public static int score;
+    String[] hand;
+    int[] Card2;
+
+    public Player(String[] hand1) {
+        hand = hand1;
+        Card2 = new int[5];
+    }
+
+    public static int getScore() {
+        return score;
+    }
+
+    public static void setScore(int score1) {
+        score = score1;
+    }
+
+    public void setCard(String[] hand1) {
+        hand = hand1;
+        card2();
+    }
+
+    public void card2() {
+        for (int i = 0; i < hand.length; i++) {
+            if (hand[i].equals("T")) {
+                Card2[i] = 10;
+            }
+            else if (hand[i].equals("J")) {
+                Card2[i] = 11;
+            }
+            else if (hand[i].equals("Q")) {
+                Card2[i] = 12;
+            }
+            else if (hand[i].equals("K")) {
+                Card2[i] = 13;
+            }
+            else if (hand[i].equals("A")) {
+                Card2[i] = 14;
+            }
+            else {
+                Card2[i] = Integer.parseInt(hand[i]);}
+        }
+        Arrays.sort(Card2);
+    }
+
+    public void playGame() {
+        score(Card2[2]);
+        Card2[2] = 0;
+    }
+
+    public void score(int card) {
+        if (!(card == 9)) {
+            if (card == 10) {
+                for (int i = -10; i < 0; i++) {
+                    score--;
+                    if (score == 33 || score == 55 || score == 77) score += 5;
+                }
+            }
+            else if (card == 7) {
+                if (score < 93) {
+                    for (int i = 0; i < card; i++) {
+                        score++;
+                        if (score == 34 || score == 56 || score == 78) {
+                            score += 5;
+                        }
+                    }
+                }
+                else {
+                    score++;
+                }
+            }
+            else {
+                for (int i = 0; i < card; i++) {
+                    score++;
+                    if (score == 34 || score == 56 || score == 78) score += 5;
+                }
+            }
+        }
+    }
+
+
+
+}
